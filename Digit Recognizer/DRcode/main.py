@@ -5,12 +5,17 @@ def readCSV():
     test=np.loadtxt('D:/GitProject/DataMiningTest1/DataMiningTest1/Digit Recognizer/data/test.csv',dtype='U',delimiter=',')
     trainLable=np.copy(data[1:,0])
     trainData=np.copy(data[1:,1:])
-    testData=np.copy(test[1:,1:])
-    return trainLable,trainData,testData
-a,b,c=readCSV()
+    trainNum=np.shape(trainLable)[0]
+    testData=np.copy(test[1:,0:])
+    testNum=np.shape(testData)[0]
+    temp=np.zeros([testNum,1],dtype='int16')
+    testLable=np.array(temp,dtype='U')
+    return trainLable,trainData,trainNum,testData,testLable,testNum
+a,b,c,d,e,f=readCSV()
 print(type(a))
 print(np.shape(a))
 print(np.shape(b))
-print(np.shape(c))
-print(c[0])
+print(np.shape(d))
+print(np.shape(e))
+print(e)
 #print(a[1][1])
