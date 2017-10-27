@@ -5,15 +5,16 @@ def readCSV():
     data=np.loadtxt('../data/train.csv',dtype='U',delimiter=',')
     test=np.loadtxt('../data/test.csv',dtype='U',delimiter=',')
 
-    trainLable=np.copy(data[1:10,0]) # use 50 items to test
-    trainData=np.copy(data[1:10,1:])
+    trainLable=np.copy(data[1:-2000,0]).astype('int32') # use 50 items to test
+    trainData=np.copy(data[1:-2000,1:])
 
-    testData=np.copy(test[1:10,0:])
+    testData=np.copy(data[-2000:,1:])
+    testLable = np.copy(data[-2000:, 0]).astype('int32')
 
     trainData=toFloat(trainData)
     testData=toFloat(testData)
 
-    return trainLable,trainData,testData
+    return trainLable,trainData,testData,testLable
 
 #change the string to int and normalization
 def toFloat(array):
@@ -25,6 +26,7 @@ def toFloat(array):
         for j in xrange(n):
             newA[i,j]=float(array[i,j])/255 # make sure the range of data in (0,1)
     return newA
+
 '''
 a,b,c,d,e,f=readCSV()
 print(type(a))

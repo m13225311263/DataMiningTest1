@@ -24,9 +24,9 @@ class CNN(nn.Module):
     def forward(self,x):
         x=self.conv1(x)
         x=self.conv2(x)
-        # x=x.view(x.size(0),-1)
+        x=x.view(x.size(0),-1)
         output= self.out(x)
-        return  output
+        return  output,x
 
 cnn=CNN()
 print(cnn)
